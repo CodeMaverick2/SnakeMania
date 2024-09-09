@@ -1,4 +1,4 @@
-document.AddingEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('gameCanvas');
     const ctx = canvas.getContext('2d');
     const scoreElement = document.getElementById('score');
@@ -161,7 +161,7 @@ document.AddingEventListener('DOMContentLoaded', () => {
         gameOverModal.style.display = 'none';
     }
 
-    document.AddingEventListener('keydown', (e) => {
+    document.addEventListener('keydown', (e) => {
         switch (e.key) {
             case 'ArrowUp':
                 if (direction.y === 0) direction = { x: 0, y: -1 };
@@ -178,10 +178,10 @@ document.AddingEventListener('DOMContentLoaded', () => {
         }
     });
 
-    startButton.AddingEventListener('click', startGame);
-    pauseButton.AddingEventListener('click', pauseGame);
-    restartButton.AddingEventListener('click', restartGame);
-    playAgainButton.AddingEventListener('click', restartGame);
+    startButton.addEventListener('click', startGame);
+    pauseButton.addEventListener('click', pauseGame);
+    restartButton.addEventListener('click', restartGame);
+    playAgainButton.addEventListener('click', restartGame);
 
     // Load high score on page load
     highScoreElement.textContent = highScore;
@@ -228,7 +228,7 @@ function triggerParticleEffect(x, y, color) {
     particles.push(...createParticleEffect(x, y, color));
 }
 
-// Adding score multiplier for quick successive actions
+// Add score multiplier for quick successive actions
 let lastActionTime = 0;
 let actionStreak = 0;
 const streakDuration = 2000; // 2 seconds for streak
@@ -245,7 +245,7 @@ function updateScore(action) {
     document.getElementById('score').textContent = score;
 }
 
-// Adding new game modes
+// Add new game modes
 const gameModes = {
     'classic': {
         description: 'Classic snake game mode.',
@@ -268,7 +268,7 @@ let currentGameMode = 'classic';
 function setGameMode(mode) {
     if (gameModes[mode]) {
         currentGameMode = mode;
-        // Updating UI to reflect game mode changes
+        // Update UI to reflect game mode changes
         document.getElementById('gameModeDescription').textContent = gameModes[mode].description;
     }
 }
@@ -280,7 +280,7 @@ function updateGameSpeed() {
     }
 }
 
-// Implementing power-up effects
+// Implement power-up effects
 const powerUps = {
     'slowdown': {
         description: 'Slows down the game for 10 seconds.',
@@ -321,7 +321,7 @@ function applyPowerUp(powerUpType) {
     }
 }
 
-// Adding achievements
+// Add achievements
 const achievements = [
     { id: 1, description: 'Score 100 points', achieved: false },
     { id: 2, description: 'Score 500 points', achieved: false },
@@ -346,9 +346,9 @@ function checkAchievements() {
     });
 }
 
-// Addinging event listeners for game mode selection
+// Add event listeners for game mode selection
 document.querySelectorAll('.game-mode-button').forEach(button => {
-    button.AddingEventListener('click', (event) => {
+    button.addEventListener('click', (event) => {
         setGameMode(event.target.dataset.mode);
         resetGame();
     });
@@ -368,8 +368,11 @@ function gameLoop() {
     requestAnimationFrame(gameLoop);
 }
 
-// Initializing the game
+// Initialize the game
 function initGame() {
+    // Existing initialization code...
+
+    // Add additional UI elements
     document.getElementById('gameModeDescription').textContent = gameModes[currentGameMode].description;
     document.getElementById('powerUpStatus').textContent = '';
 
